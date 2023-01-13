@@ -8,5 +8,13 @@
 </head>
 <body>
     <h1>Galerie</h1>
+
+    <?php
+        foreach ($scanned_directory as $key => $value) { ?>
+            <img src="<?= $dir.$value ?>" alt="">        
+        <?php }  
+        ?>
+
+
 </body>
 </html>

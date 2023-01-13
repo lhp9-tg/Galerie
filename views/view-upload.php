@@ -1,9 +1,3 @@
-<?php 
-$size = (1048576*2);
-$formats = ['jpeg', 'jpg', 'png', 'webp'];
-$target_dir = "../assets/img/".$_SESSION['user']['username']."/";
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 

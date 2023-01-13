@@ -62,6 +62,9 @@ function upload($name, $target_dir, $formatChosen)
     return $uploadResult;
 }
 
+$size = (1048576*2);
+$formats = ['jpeg', 'jpg', 'png', 'webp'];
+$target_dir = "../assets/img/".$_SESSION['user']['username']."/";
 
 include('../include/navbar.php');
 include('../views/view-upload.php');

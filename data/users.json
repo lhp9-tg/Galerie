@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "pseudo": "maurice76",
+            "mail": "maurice76@lhp9.fr",
+            "password": "$2y$10$EnBmTJ3YyuOwmX1gK60k6OpUxwCvIlvuZZEejAb5ftwGejsSSVYfu",
+            "quota": 50
+        },
+        {
+            "pseudo": "totodu92",
+            "mail": "totodu92@lhp9.fr",
+            "password": "$2y$10$RdgfsqDXgtuT1it2/S4zuuJKdmyvbfVEStmJznWzRYIgTLrp3uEhy",
+            "quota": 100
+        }
+    ]
+}

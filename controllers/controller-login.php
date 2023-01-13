@@ -17,7 +17,6 @@ $data = json_decode($json, true);
 $users = $data['users'];
 $errors = [];
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['username'])) {
@@ -67,5 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+
 
 include('../views/view-login.php');

@@ -7,6 +7,22 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
+function checkquota() {
+
+    $dir = '../assets/img/'.$_SESSION['user']['username'].'/';
+    $files = array_diff(scandir($dir), array('..', '.'));
+    $usedsize = 0;
+
+    foreach($files as $file) {
+        $usedsize = $usedsize + filesize($dir.$file);
+    }
+
+    $usedsize = $usedsize/(1024*1024);
+    $currentquota = $_SESSION['user']['quota'] - $usedsize;
+    
+    return $currentquota; 
+}
+
 function checkImage($name, $size, $format)
 {
 
@@ -31,8 +47,13 @@ function checkImage($name, $size, $format)
         $checkResult = [
             'status' => false, 
             'message' => 'La taille de l\'image ne doit excéder 2Mo'];
-
-    } else {
+    }
+    elseif ((filesize($_FILES[$name]['tmp_name'])/(1024*1024)) >= checkquota()) {
+        $checkResult = [
+            'status' => false, 
+            'message' => 'Votre quota est dépassé.<br>Votre espace restant est : '.number_format(checkquota(), 2).'Mo'];
+    } 
+    else {
         $checkResult = [
             'status' => true,
             'status' => ''
@@ -41,6 +62,7 @@ function checkImage($name, $size, $format)
 
     return $checkResult;
 }
+
 
 function upload($name, $target_dir, $formatChosen)
 {
@@ -65,6 +87,30 @@ function upload($name, $target_dir, $formatChosen)
 $size = (1048576*2);
 $formats = ['jpeg', 'jpg', 'png', 'webp'];
 $target_dir = "../assets/img/".$_SESSION['user']['username']."/";
+
+if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
+
+    if (isset($_POST['check'])) {
+
+        foreach ($_FILES as $key => $name) {
+            $result = checkImage($key, $size, $formats);
+
+            if ($result['status'] === false) {
+                $error =  $result['message'];
+
+            } elseif (isset($_POST['format'])) {
+
+                $formatChosen = $_POST['format'];
+                
+                
+                $result = upload($key, $target_dir, $formatChosen);
+                $error =  $result['message'];
+            }
+        }
+
+    }
+
+}
 
 include('../include/navbar.php');
 include('../views/view-upload.php');

@@ -10,9 +10,14 @@
     <h1>Galerie</h1>
 
     <?php
+        if (empty($scanned_directory)) {
+            echo 'Votre galerie est vide.';
+        }
+        else {
         foreach ($scanned_directory as $key => $value) { ?>
             <img src="<?= $dir.$value ?>" alt="">        
         <?php }  
+        }
         ?>
 
 

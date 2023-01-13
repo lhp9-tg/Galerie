@@ -7,6 +7,11 @@
     <title>Profil</title>
 </head>
 <body>
-    
+    <h1>Mon appli</h1>
+    <ul>
+        <li>Pseudo : <?= $_SESSION['user']['username'] ?></li>
+        <li>Mail : <?= $_SESSION['user']['mail'] ?></li>
+        <li>Quota : <?= $_SESSION['user']['quota'] ?></li>
+    </ul>
 </body>
 </html>

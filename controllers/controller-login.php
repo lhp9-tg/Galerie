@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if (isset($_GET['logout'])) {
@@ -50,10 +51,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         else {
             $quota = $users[$userkey]['quota'];
+            $mail = $users[$userkey]['mail'];
 
             $usersession = [
                 'username' => $_POST['username'],
                 'password' => $_POST['password'],
+                'mail' => $mail,
                 'quota' => $quota
             ];
 
